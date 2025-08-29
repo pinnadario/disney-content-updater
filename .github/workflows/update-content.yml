@@ -1,0 +1,70 @@
+name: Disney Content Auto-Updater
+
+# Se ejecuta todos los días a las 8:00 AM UTC (9:00 AM CET)
+on:
+  schedule:
+    - cron: '0 8 * * *'  # Todos los días a las 8:00 AM UTC
+  workflow_dispatch:  # Permite ejecutar manualmente
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+        
+    - name: Run Disney content updater
+      run: |
+        python disney_updater.py
+        
+    - name: Check if file was updated
+      id: check_changes
+      run: |
+        if [ -f "disney-content.json" ]; then
+          echo "file_exists=true" >> $GITHUB_OUTPUT
+          if git diff --quiet HEAD -- disney-content.json; then
+            echo "file_changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "file_changed=true" >> $GITHUB_OUTPUT
+          fi
+        else
+          echo "file_exists=false" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Configure Git
+      if: steps.check_changes.outputs.file_exists == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Disney Content Bot"
+        
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.file_exists == 'true'
+      run: |
+        git add disney-content.json
+        git commit -m "🎭 Auto-update Disney content $(date +'%Y-%m-%d %H:%M UTC')" || exit 0
+        git push
+        
+    - name: Create summary
+      run: |
+        echo "## Disney Content Update Summary" >> $GITHUB_STEP_SUMMARY
+        echo "**Date:** $(date +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_STEP_SUMMARY
+        if [ -f "disney-content.json" ]; then
+          echo "**Status:** ✅ Content updated successfully" >> $GITHUB_STEP_SUMMARY
+          JOKES_COUNT=$(python -c "import json; data=json.load(open('disney-content.json')); print(len(data.get('chistes', [])))")
+          AUTHORS_COUNT=$(python -c "import json; data=json.load(open('disney-content.json')); print(len(data.get('frases', {})))")
+          echo "**Total Jokes:** $JOKES_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "**Total Quote Authors:** $AUTHORS_COUNT" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "**Status:** ❌ Content update failed" >> $GITHUB_STEP_SUMMARY
+        fi
