@@ -1,0 +1,54 @@
+{
+  "chistes": [
+    "¿Por qué Mickey Mouse se hizo astronauta? ¡Quería visitar Plutón!",
+    "¿Cuál es el restaurante favorito de Peter Pan? ¡Wendy's!",
+    "¿Por qué Cenicienta es mala jugando fútbol? ¡Siempre huye del balón!",
+    "¿Cómo llamas a un hada que no se ha bañado? ¡Campanilla Apestosa!",
+    "¿Por qué rechazaron la tarjeta de crédito de Elsa? ¡Su cuenta estaba congelada!",
+    "Por qué Mickey Mouse se hizo astronauta? ¡Quería visitar Plutón!",
+    "Cuál es el restaurante favorito de Peter Pan? ¡Wendy's!",
+    "Por qué Cenicienta es mala jugando fútbol? ¡Siempre huye del balón!",
+    "Cómo llamas a un hada que no se ha bañado? ¡Campanilla Apestosa!",
+    "Por qué rechazaron la tarjeta de crédito de Elsa? ¡Su cuenta estaba congelada!",
+    "Why did the chicken get a penalty? For fowl play.",
+    "The generation of random numbers is too important to be left to chance.",
+    "What do you call cheese by itself? Provolone."
+  ],
+  "frases": {
+    "Mickey Mouse": [
+      "¡Oh boy! ¡Hot dog!",
+      "¡Nos vemos pronto!",
+      "¡Gosh!",
+      "¡Ja-ja!"
+    ],
+    "Stitch": [
+      "Ohana significa familia",
+      "¡Aloha!",
+      "¡Blue punch buggy!",
+      "¡Meega, nala kweesta!"
+    ],
+    "Elsa": [
+      "¡Let it go!",
+      "El frío nunca me molestó",
+      "El amor descongelará",
+      "¡Hacia lo desconocido!"
+    ],
+    "Woody": [
+      "¡Hay una serpiente en mi bota!",
+      "¡Apunta al cielo!",
+      "¡Eres mi ayudante favorito!"
+    ],
+    "Olaf": [
+      "Algunas personas valen la pena derretirse",
+      "¡Me encantan los abrazos cálidos!"
+    ],
+    "Lin Yutang": [
+      "The busy man is never wise and the wise man is never busy."
+    ],
+    "Roy T. Bennett": [
+      "If you want to be happy, do not dwell in the past, do not worry about the future, focus on living fully in the present."
+    ]
+  },
+  "ultima_actualizacion": "2025-08-29T09:39:46.763471",
+  "version": 2
+}
